@@ -6,7 +6,7 @@ git remote add origin "url"				// Collega url repository e salvare alias origin
 git remote -v						// Mostra url repository collegate
 git remote remove "origin"				// Elimina dai link salvati
 
-git clone "url"						// Creare una copia locale di un repository remoto
+git clone "url"						// Creare una copia locale di un repository remoto (origin è associato all'url)
 git pull						// Aggiorna progetto locale con online
 git pull origin "tuo_branch"				// Aggiorna branch locale con online
 
@@ -27,6 +27,7 @@ git log							// Lista commit con hash
 git commit --amend					// Modifica ultimo commit
 git diff "hash_commit1" "hash_commit2"			// Confronta due commit
 
+git push origin master					// Carica su git 
 git push -u origin master				// Carica su git collegando la repository remota con alias origin con ramo master 
 git push						// Carica su git tutti i commit
 git push origin "hash_del_commit"			// Carica su git solo il commit selezionato
