@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
         Node *node = queue.front();
         queue.pop();
 
-        if(node != nullptr){
+        if(node != nullptr){    // Questo controllo lo posso fare prima di aggiungere un nodo alla queue (per ogni if)
             cout<<node->data;
             
             queue.push(node->left);     // Left

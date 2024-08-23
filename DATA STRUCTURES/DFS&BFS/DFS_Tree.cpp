@@ -13,7 +13,7 @@ struct Node {
 
 void DFS_Tree(Node* nodo){
 
-    if(nodo != nullptr){
+    if(nodo != nullptr){    // Questo controllo lo posso fare prima di di entrare nel ricorsivamente nella funzione
         cout<<nodo->data;
 
         DFS_Tree(nodo->left);   // Left

@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
         Coord nodo = queue.front();
         queue.pop();
 
-        if(matrix[nodo.r][nodo.c] == 1){
+        if(matrix[nodo.r][nodo.c] == 1){    // Questo controllo lo posso fare prima di aggiungere un nodo alla queue (per ogni if)
 
             if(nodo.c < C - 1)  queue.push(Coord(nodo.r, nodo.c+1)); // Destra
             if(nodo.r < R - 1)  queue.push(Coord(nodo.r + 1, nodo.c)); // Sotto

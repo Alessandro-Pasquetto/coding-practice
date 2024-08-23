@@ -9,10 +9,9 @@ void DFS_Matrix(vector<vector<int>>&matrix, int r, int c)
     int R = matrix.size();
     int C = matrix[0].size();
 
-    if((r >= 0 && r < R) && (c >= 0 && c < C))
-    {
-        if(matrix[r][c] == 1)
-        {       
+    if((r >= 0 && r < R) && (c >= 0 && c < C)){
+        if(matrix[r][c] == 1){  // Questi controlli li posso fare prima di aggiungere un nodo alla queue (per ogni if)
+
             matrix[r][c] = 0; // Visited
             printf("\nR: %d\tC:%d", r, c);
 
