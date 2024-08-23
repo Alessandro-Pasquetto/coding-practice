@@ -24,6 +24,7 @@ My algorithm library
 |                                               |                                                        |
 | `git commit -m "commento"`                  | Salvataggio in locale                                 |
 | `git commit -a -m "commento"`               | Add all + salvataggio in locale                       |
+| `git commit --amend --no-edit"`               | Modifica l'ultimo commit senza cambiare il messaggio |
 | `git log`                                  | Lista commit con hash                                 |
 | `git commit --amend`                        | Modifica ultimo commit                                |
 | `git diff "hash_commit1" "hash_commit2"`    | Confronta due commit                                  |
