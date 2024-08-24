@@ -11,14 +11,12 @@ struct Node {
         data(data), left(left), right(right) {}   
 };
 
-void DFS_Tree(Node* nodo){
+void DFS_Tree(Node* node){
 
-    if(nodo != nullptr){    // Questo controllo lo posso fare prima di di entrare nel ricorsivamente nella funzione
-        cout<<nodo->data;
+    cout<<node->data;
 
-        DFS_Tree(nodo->left);   // Left
-        DFS_Tree(nodo->right);  // Right
-    }
+    if(node->left != nullptr)   DFS_Tree(node->left);   // Left
+    if(node->right != nullptr)  DFS_Tree(node->right);  // Right
 }
 
 int main(int argc, char const *argv[])

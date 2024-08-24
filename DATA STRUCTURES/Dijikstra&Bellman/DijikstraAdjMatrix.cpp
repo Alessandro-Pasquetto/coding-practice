@@ -58,14 +58,11 @@ void Dijkstra(const vector<vector<int>>& graphAdj, int start, int target) {
         int u = minHeap.top().index;    // Estrai il nodo con la distanza minima
         minHeap.pop();                  // Rimuovi il nodo dal minHeap
 
-        if (visited[u]) continue;       // Se il nodo è già stato visitato, salta
-
         visited[u] = true;              // Marca il nodo come visitato
 
         // Se raggiungiamo il nodo target, possiamo interrompere il ciclo
-        if (u == target) {
+        if (u == target)
             break;
-        }
 
         // Aggiorna le distanze dei nodi adiacenti
         for (int v = 0; v < V; v++) {

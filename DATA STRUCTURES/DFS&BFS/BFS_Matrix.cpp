@@ -33,15 +33,13 @@ int main(int argc, char const *argv[])
         Coord nodo = queue.front();
         queue.pop();
 
-        if(matrix[nodo.r][nodo.c] == 1){    // Questo controllo lo posso fare prima di aggiungere un nodo alla queue (per ogni if)
+        // Controllo se esiste il nodo in quella direzione e se non è già stato visitato (1)
+        if(nodo.c < C - 1 && matrix[nodo.r][nodo.c + 1])  queue.push(Coord(nodo.r, nodo.c + 1));    // Destra
+        if(nodo.r < R - 1 && matrix[nodo.r + 1][nodo.c])  queue.push(Coord(nodo.r + 1, nodo.c));    // Sotto
+        if(nodo.c > 0 && matrix[nodo.r][nodo.c - 1])      queue.push(Coord(nodo.r, nodo.c - 1));    // Sinistra
+        if(nodo.r > 0 && matrix[nodo.r - 1][nodo.c])      queue.push(Coord(nodo.r - 1, nodo.c));    // Sopra
 
-            if(nodo.c < C - 1)  queue.push(Coord(nodo.r, nodo.c+1)); // Destra
-            if(nodo.r < R - 1)  queue.push(Coord(nodo.r + 1, nodo.c)); // Sotto
-            if(nodo.c > 0)      queue.push(Coord(nodo.r, nodo.c - 1)); // Sinistra
-            if(nodo.r > 0)      queue.push(Coord(nodo.r - 1, nodo.c)); // Sopra
-
-            matrix[nodo.r][nodo.c] = 0; // Visitato
-        }
+        matrix[nodo.r][nodo.c] = 0; // Visitato
     }
 
     return 0;

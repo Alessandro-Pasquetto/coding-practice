@@ -57,17 +57,15 @@ void Dijkstra(const vector<vector<int>>& matrix, int start, int target) {
     minHeap.push({start, 0});           // Inserisci l'indice del nodo e la distanza nel minHeap
 
     while (!minHeap.empty()) {
+
         int u = minHeap.top().index;    // Estrai il nodo con la distanza minima
         minHeap.pop();                  // Rimuovi il nodo dal minHeap
-
-        if (visited[u]) continue;       // Se il nodo è già stato visitato, salta
 
         visited[u] = true;              // Marca il nodo come visitato
 
         // Se raggiungiamo il nodo target, possiamo interrompere il ciclo
-        if (u == target) {
+        if (u == target)
             break;
-        }
 
         // Aggiorna le distanze dei nodi adiacenti
         // Top
@@ -82,6 +80,7 @@ void Dijkstra(const vector<vector<int>>& matrix, int start, int target) {
                 minHeap.push({v, newDist});         // Inserisci la nuova distanza nel minHeap
             }
         }
+
         // Right
         v = u + 1;
         if(((v + 1) % C != 0) && !visited[v]){
@@ -145,8 +144,8 @@ int main() {
     int xStart = 1, yStart = 1;
     int xTarget = 4, yTarget = 4;
 
-    int start = yStart * matrix[0].size() + xStart;   // Nodo di partenza
-    int target = yTarget * matrix[0].size() + xTarget;  // Nodo di destinazione
+    int start = yStart * matrix[0].size() + xStart;     // Nodo di partenza
+    int target = yTarget * matrix[0].size() + xTarget;  // Nodo di arrivo
 
     Dijkstra(matrix, start, target);
 

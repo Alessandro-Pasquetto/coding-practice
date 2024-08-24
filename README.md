@@ -27,9 +27,9 @@ Ricordo comandi git:
 | `git commit -m "commento"`                  | Salvataggio in locale                                 |
 | `git commit -a -m "commento"`               | Add all + salvataggio in locale                       |
 | `git commit --amend --no-edit"`               | Modifica l'ultimo commit senza cambiare il messaggio |
+| `git commit --amend`                        | Modifica ultimo commit                                |
 | `git log`                                  | Lista commit con hash                                 |
 | `git diff "hash_commit1" "hash_commit2"`    | Confronta due commit                                  |
-| `git commit --amend`                        | Modifica ultimo commit                                |
 | `git reset`                                   | Annulla le modifiche fatte e riparti dall ultimo commit fatto  |
 | `git checkout <commit-hash>`                  | Annulla le modifiche fatte e riparti dall commit scelto  |
 |                                               |                                                        |
