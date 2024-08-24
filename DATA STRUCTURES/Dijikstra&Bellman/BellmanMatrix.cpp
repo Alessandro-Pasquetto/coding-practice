@@ -68,12 +68,12 @@ void BellmanFord(const vector<vector<int>>& matrix, int start, int target) {
 
 int main() {
     vector<vector<int>> matrix = {
-        {1, 3, 1, 4, -2, 9},
+        {1, 3, 1, 4, -1, 9},
         {6, 0, 9, 8, 1, 4},
         {5, 7, 2, 6, 3, 2},
         {4, 8, 1, 9, 7, 6},
-        {2, -3, 3, 7, 4, 8},
-        {9, 1, 6, -2, 5, 3}
+        {2, -2, 3, 7, 4, 8},
+        {9, 2, 6, -2, 5, 3}
     };
 
     int xStart = 1, yStart = 1;
