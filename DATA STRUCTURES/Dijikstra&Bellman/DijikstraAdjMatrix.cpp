@@ -6,19 +6,17 @@
 using namespace std;
 
 /*
-
-    L'algoritmo dijikstra serve per trovare il cammino con peso minimo (pesi non negativi)
+    L'algoritmo dijikstra serve per trovare il cammino con peso minimo (pesi non negativi).
     Inizializza per il nodo di partenza un costo 0 e per tutti gli altri un costo infinito
     Estrae dal minHeap il nodo con costo minimo, aggiunge i nodi adiacenti non ancora visitati al minHeapPeso,
     se pesoNodoCorrente + pesoArco < pesoNodoAdiacente allora aggiorna il nuovo peso sul nodo adiacente e aggiorna
-    il parent del nodo adiacente con nodoCorrente.
+    il parent del nodo adiacente con nodoCorrente (Relax arco).
     Segna come visitato il nodoCorrente.
-    Data che visito prima i nodi a costo minimo quando visito un nodo sono certo che il peso che ha è il minimo per raggiungerlo
+    Dato che visito prima i nodi a costo minimo quando visito un nodo sono certo che il peso che ha è il minimo per raggiungerlo
     Quindi se devo trovare il cammino minimo per arrivare al target appena l'algotimo visita il nodo target posso fermarmi.
-
 */
 
-// Definizione della struct Node
+// Nodo per il minHeap
 struct Node {
     int index;    // Indice del nodo
     int distance; // Distanza dal nodo di partenza
@@ -26,7 +24,7 @@ struct Node {
 
 struct MinHeapComparator {
     bool operator()(const Node& node1, const Node& node2) const {
-        return node1.distance > node2.distance;     // Maggiore per il min-heap
+        return node1.distance > node2.distance;     // Maggiore per il minHeap
     }
 };
 
@@ -41,23 +39,24 @@ void PrintPath(const vector<int>& parent, int target) {
     cout << " -> " << target;
 }
 
-// Implementazione dell'algoritmo di Dijkstra usando un min-heap per un grafo rappresentato da una matrice di adiacenza
 void Dijkstra(const vector<vector<int>>& graphAdj, int start, int target) {
+
+    // Inizializzo
     int V = graphAdj.size();        // Numero di nodi nel grafo
     vector<int> dist(V, INT_MAX);   // Distanze iniziali infinite per tutti i nodi
     vector<bool> visited(V, false); // Set di nodi per cui è già stato trovato il percorso più breve
     vector<int> parent(V, -1);      // Per tenere traccia del percorso
 
-    // Priority queue per gestire i nodi con la distanza minima (min-heap)
-    priority_queue<Node, vector<Node>, MinHeapComparator> minHeap;
+    
+    priority_queue<Node, vector<Node>, MinHeapComparator> minHeap;  // MinHeap serve per estrarre i nodi da analizzare prima
 
-    // Inizializza il nodo di partenza con distanza 0
+    // Aggiungo il nodo di partenza alla coda
     dist[start] = 0;
-    minHeap.push({start, 0});           // Inserisci l'indice del nodo e la distanza nel min-heap
+    minHeap.push({start, 0});           // Inserisci l'indice del nodo e la distanza nel minHeap
 
     while (!minHeap.empty()) {
         int u = minHeap.top().index;    // Estrai il nodo con la distanza minima
-        minHeap.pop();                  // Rimuovi il nodo dal min-heap
+        minHeap.pop();                  // Rimuovi il nodo dal minHeap
 
         if (visited[u]) continue;       // Se il nodo è già stato visitato, salta
 
@@ -76,7 +75,7 @@ void Dijkstra(const vector<vector<int>>& graphAdj, int start, int target) {
                 if (newDist < dist[v]) {                // Se la nuova distanza è minore
                     dist[v] = newDist;                  // Aggiorna la distanza
                     parent[v] = u;                      // Aggiorna il parent
-                    minHeap.push({v, newDist});         // Inserisci la nuova distanza nel min-heap
+                    minHeap.push({v, newDist});         // Inserisci la nuova distanza nel minHeap
                 }
             }
         }
