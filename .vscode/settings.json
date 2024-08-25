@@ -8,6 +8,7 @@
         "vector": "cpp",
         "initializer_list": "c",
         "new": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "random": "c"
     }
 }
