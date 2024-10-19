@@ -2,6 +2,12 @@
 #include <vector>
 #include <queue>
 
+/*
+
+    Path cost from S to T avoid #
+
+*/
+
 using namespace std;
 
 struct Coord{
@@ -26,7 +32,7 @@ int main()
         {
             cin>>matrix[r][c];
 
-            if(matrix[r][c] == 'P'){
+            if(matrix[r][c] == 'S'){
                 rStart = r;
                 cStart = c;
             }
@@ -53,7 +59,7 @@ int main()
             Coord nodo = queue.front();
             queue.pop();
 
-            if (matrix[nodo.r][nodo.c] == 'B') {
+            if (matrix[nodo.r][nodo.c] == 'T') {
                 cout << costo;
                 return 0;
             }
@@ -84,3 +90,11 @@ int main()
 
     return 0;
 }
+
+/*
+3 6
+S.#..T
+..#...
+#....#
+9
+*/
