@@ -24,22 +24,31 @@ int main(int argc, char const *argv[])
     int R = matrix.size();
     int C = matrix[0].size();
 
-    // Setto punto di partenza
-    queue.push(Coord(0, 0));
+    for (int r = 0; r < R; r++)
+    {
+        for (int c = 0; c < C; c++)
+        {
+            if(!matrix[r][c])
+                continue;
 
-    // Per ogni nodo a 1 nella lista controllo i nodi adiacenti
-    while(!queue.empty()){
+            // Setto punto di partenza
+            queue.push(Coord(r, c));
 
-        Coord nodo = queue.front();
-        queue.pop();
+            // Per ogni nodo a 1 nella lista controllo i nodi adiacenti
+            while(!queue.empty()){
 
-        // Controllo se esiste il nodo in quella direzione e se non è già stato visitato (1)
-        if(nodo.c < C - 1 && matrix[nodo.r][nodo.c + 1])  queue.push(Coord(nodo.r, nodo.c + 1));    // Destra
-        if(nodo.r < R - 1 && matrix[nodo.r + 1][nodo.c])  queue.push(Coord(nodo.r + 1, nodo.c));    // Sotto
-        if(nodo.c > 0 && matrix[nodo.r][nodo.c - 1])      queue.push(Coord(nodo.r, nodo.c - 1));    // Sinistra
-        if(nodo.r > 0 && matrix[nodo.r - 1][nodo.c])      queue.push(Coord(nodo.r - 1, nodo.c));    // Sopra
+                Coord nodo = queue.front();
+                queue.pop();
 
-        matrix[nodo.r][nodo.c] = 0; // Visitato
+                // Controllo se esiste il nodo in quella direzione e se non è già stato visitato (1)
+                if(nodo.c < C - 1 && matrix[nodo.r][nodo.c + 1])  queue.push(Coord(nodo.r, nodo.c + 1));    // Destra
+                if(nodo.r < R - 1 && matrix[nodo.r + 1][nodo.c])  queue.push(Coord(nodo.r + 1, nodo.c));    // Sotto
+                if(nodo.c > 0 && matrix[nodo.r][nodo.c - 1])      queue.push(Coord(nodo.r, nodo.c - 1));    // Sinistra
+                if(nodo.r > 0 && matrix[nodo.r - 1][nodo.c])      queue.push(Coord(nodo.r - 1, nodo.c));    // Sopra
+
+                matrix[nodo.r][nodo.c] = 0; // Visitato
+            }
+        }
     }
 
     return 0;
