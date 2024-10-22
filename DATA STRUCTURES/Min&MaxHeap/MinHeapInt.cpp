@@ -4,36 +4,27 @@
 
 using namespace std;
 
-struct Node {
-    int data;
-    int otherData;
-
-    Node(int d, int o) : data(d), otherData(o) {}   // Solo per inizializzare in riga
-};
-
-// Comparatore per la min-heap
-struct MinHeapComparatorNode {
-    bool operator()(Node& a, Node& b) const{
-        return a.data > b.data; // Min-heap: il valore di data più piccolo ha la priorità più alta
+struct MinHeapComparator {
+    bool operator()(int a, int b) const {
+        return a > b; // Min-heap: il valore più piccolo ha la priorità più alta
     }
 };
-
 
 int main(int argc, char const *argv[])
 {
 
-    priority_queue<Node, vector<Node>, MinHeapComparatorNode> minHeapNode;
+    priority_queue<int, vector<int>, MinHeapComparator> minHeap;
 
     // Input
-    minHeapNode.push(Node(10, 4));
-    minHeapNode.push(Node(5, 6));
-    minHeapNode.push(Node(15, 8));
-    minHeapNode.push(Node(2, 23));
+    minHeap.push(10);
+    minHeap.push(5);
+    minHeap.push(15);
+    minHeap.push(2);
 
     // Output
-    while (!minHeapNode.empty()) {
-        cout << minHeapNode.top().data << " ";
-        minHeapNode.pop();
+    while (!minHeap.empty()) {
+        cout << minHeap.top() << " ";
+        minHeap.pop();
     }
 
     return 0;
