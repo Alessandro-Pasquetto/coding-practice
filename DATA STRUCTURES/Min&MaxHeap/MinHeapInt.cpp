@@ -10,8 +10,7 @@ struct MinHeapComparator {
     }
 };
 
-int main(int argc, char const *argv[])
-{
+int main(){
 
     priority_queue<int, vector<int>, MinHeapComparator> minHeap;
 

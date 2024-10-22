@@ -14,13 +14,11 @@ struct Node {
 // Comparatore per la min-heap
 struct MinHeapComparatorNode {
     bool operator()(Node& a, Node& b) const{
-        return a.data > b.data; // Min-heap: il valore di data più piccolo ha la priorità più alta
+        return a.data > b.data; // Min-heap: il valore più piccolo ha la priorità più alta
     }
 };
 
-
-int main(int argc, char const *argv[])
-{
+int main(){
 
     priority_queue<Node, vector<Node>, MinHeapComparatorNode> minHeapNode;
 

@@ -3,15 +3,12 @@
 
 using namespace std;
 
-struct Node;
-int HeuristicFunction(Node n, int target_int);
-
 struct Node{
     int num, steps, h, k;
     bool a = 0, b = 0, c = 0;
 
     Node(int num, int steps, int h, bool a, bool b, bool c){
-        this->num = num;                        // Num
+        this->num = num;                    // Num
         this->steps = steps;                // #Steps
         this->h = h;                        // Heuristic
         this->k = h + steps;                // h + steps
@@ -25,7 +22,7 @@ struct Node{
 // Comparatore per la min-heap
 struct MinHeapComparatorNode {
     bool operator()(Node& a, Node& b) const{
-        return a.k > b.k; // Min-heap: il valore di data più piccolo ha la priorità più alta
+        return a.k > b.k; // Min-heap: il valore più piccolo ha la priorità più alta
     }
 };
 
