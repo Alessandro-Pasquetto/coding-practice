@@ -11,7 +11,7 @@ Ricordo comandi git:
 | `git remote remove "origin"`                | Elimina dai link salvati                              |
 |                                               |                                                        |
 | `git clone "url"`                          | Crea una copia locale di un repository remoto         |
-| `git pull`                                 | Aggiorna progetto locale con online                   |
+| `git pull`                                 | Aggiorna progetto locale con online, se ci sono differenza fa il merge (fetch + merge)   |
 | `git pull origin "tuo_branch"`              | Aggiorna branch locale con online                     |
 |                                               |                                                        |
 | `git add .`                                | Aggiungi allo staging                                 |
@@ -20,7 +20,7 @@ Ricordo comandi git:
 |                                               |                                                        |
 | `git branch "nome_del_branch"`              | Crea branch separato                                  |
 | `git switch "nome_del_branch"`              | Switchare branch                                      |
-| `git merge "branch_di_origine"`             | Merge 2 branch                                        |
+| `git merge "branch_di_origine"`             | Merge 2 branch in locale                              |
 | `git branch`                               | Visualizza branch                                     |
 | `git branch -m "vecchio_nome_branch" "nuovo_nome_branch"` | Rinomina branch                  |
 |                                               |                                                        |
