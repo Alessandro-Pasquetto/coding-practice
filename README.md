@@ -36,4 +36,5 @@ Ricordo comandi git:
 | `git push origin master`                    | Carica su git                                         |
 | `git push -u origin master`                 | Carica su git collegando la repository remota con alias origin con ramo master |
 | `git push`                                 | Carica su git tutti i commit                          |
+| `git push --force`                          | Forza il caricamento su git di tutti i commit         |
 | `git push origin "hash_del_commit"`         | Carica su git solo il commit selezionato              |
