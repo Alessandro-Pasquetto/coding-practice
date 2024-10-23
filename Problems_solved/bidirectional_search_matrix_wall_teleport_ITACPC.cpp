@@ -5,7 +5,6 @@
 /*
     Bidirectional search
     Path cost from P to B avoid # and the cost path from S to S is 1
-
 */
 
 using namespace std;
@@ -15,10 +14,19 @@ struct Coord{
     Coord(int a, int b): r(a), c(b){}
 };
 
+void Output(int path_cost_start, int path_cost_target, int nearestS_toStart, int nearestS_toTarget){
+
+    int path_cost_tot = path_cost_start + path_cost_target + 1;
+    if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
+        cout<<nearestS_toStart + nearestS_toTarget + 1;
+    else
+        cout<<path_cost_tot;
+}
+
 int main()
 {
     int R, C;
-    cin>>R>>C;
+    cin >> R >> C;
 
     vector<vector<char>> matrix(R, vector<char>(C));
     vector<vector<char>> visited(R, vector<char>(C, '0'));
@@ -46,7 +54,6 @@ int main()
 
     int path_cost_start = 0;
     int path_cost_target = 0;
-    int path_cost_tot = 0;
 
     int nearestS_toStart = -1;
     int nearestS_toTarget = -1;
@@ -65,7 +72,7 @@ int main()
     queueTarget.push(target);
     visited[target.r][target.c] = 1;
 
-    // Bidirectional search while entrambe le queue non sono vuote
+    // Bidirectional search while almeno una queue non è vuota
     while(!(queueStart.empty() && queueTarget.empty())){
 
         // From start
@@ -75,16 +82,17 @@ int main()
                 Coord nodo = queueStart.front();
                 queueStart.pop();
 
+                // Se trovi un teleport
                 if(matrix[nodo.r][nodo.c] == 'S'){
 
                     if (nearestS_toStart == -1)
                         nearestS_toStart = path_cost_start;
-                    else{
+                    else
                         path_cost_start = nearestS_toStart + 1;
-                    }
                 }
 
                 // Steps
+                // Bot
                 if(nodo.c < C - 1  && matrix[nodo.r][nodo.c + 1] != '#'){
 
                     if(visited[nodo.r][nodo.c + 1] == '0'){
@@ -93,16 +101,12 @@ int main()
                         visited[nodo.r][nodo.c + 1] = 'P';
                     }else if(visited[nodo.r][nodo.c + 1] == 'B'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
 
                 }
+                // Right
                 if(nodo.r < R - 1  && matrix[nodo.r + 1][nodo.c] != '#'){
                     
                     if(visited[nodo.r + 1][nodo.c] == '0'){
@@ -111,15 +115,11 @@ int main()
                         visited[nodo.r + 1][nodo.c] = 'P';
                     }else if(visited[nodo.r + 1][nodo.c] == 'B'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
+                // Up
                 if(nodo.c > 0 && matrix[nodo.r][nodo.c - 1] != '#'){
                     
                     if(visited[nodo.r][nodo.c - 1] == '0'){
@@ -128,15 +128,11 @@ int main()
                         visited[nodo.r][nodo.c - 1] = 'P';
                     }else if(visited[nodo.r][nodo.c - 1] == 'B'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
+                // Left
                 if(nodo.r > 0 && matrix[nodo.r - 1][nodo.c] != '#'){
                     
                     if(visited[nodo.r - 1][nodo.c] == '0'){
@@ -144,13 +140,8 @@ int main()
                         queueStart.push(Coord(nodo.r - 1, nodo.c));
                         visited[nodo.r - 1][nodo.c] = 'P';
                     }else if(visited[nodo.r - 1][nodo.c] == 'B'){
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
 
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
@@ -165,16 +156,17 @@ int main()
                 Coord nodo = queueTarget.front();
                 queueTarget.pop();
 
+                // Se trovi un teleport
                 if(matrix[nodo.r][nodo.c] == 'S'){
 
                     if (nearestS_toTarget == -1)
                         nearestS_toTarget = path_cost_target;
-                    else{
+                    else
                         path_cost_target = nearestS_toTarget + 1;
-                    }
                 }
 
                 // Steps
+                // Bot
                 if (nodo.c < C - 1 && matrix[nodo.r][nodo.c + 1] != '#'){
 
                     if(visited[nodo.r][nodo.c + 1] == '0'){
@@ -183,15 +175,11 @@ int main()
                         visited[nodo.r][nodo.c + 1] = 'B';
                     }else if(visited[nodo.r][nodo.c + 1] == 'P'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
+                // Right
                 if (nodo.r < R - 1 && matrix[nodo.r + 1][nodo.c] != '#'){
 
                     if(visited[nodo.r + 1][nodo.c] == '0'){
@@ -200,15 +188,11 @@ int main()
                         visited[nodo.r + 1][nodo.c] = 'B';
                     }else if(visited[nodo.r + 1][nodo.c] == 'P'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
+                // Up
                 if (nodo.c > 0 && matrix[nodo.r][nodo.c - 1] != '#'){
 
                     if(visited[nodo.r][nodo.c - 1] == '0'){
@@ -217,15 +201,11 @@ int main()
                         visited[nodo.r][nodo.c - 1] = 'B';
                     }else if(visited[nodo.r][nodo.c - 1] == 'P'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
+                // Left
                 if (nodo.r > 0 && matrix[nodo.r - 1][nodo.c] != '#'){
 
                     if(visited[nodo.r - 1][nodo.c] == '0'){
@@ -234,12 +214,7 @@ int main()
                         visited[nodo.r - 1][nodo.c] = 'B';
                     }else if(visited[nodo.r - 1][nodo.c] == 'P'){
 
-                        path_cost_tot = path_cost_start + path_cost_target + 1;
-                        if(nearestS_toStart != -1 && nearestS_toTarget != -1 && nearestS_toStart + nearestS_toTarget + 1 < path_cost_tot)
-                            cout<<nearestS_toStart + nearestS_toTarget + 1;
-                        else
-                            cout<<path_cost_tot;
-
+                        Output(path_cost_start, path_cost_target, nearestS_toStart, nearestS_toTarget);
                         return 0;
                     }
                 }
@@ -248,6 +223,7 @@ int main()
         }
     }
 
+    // Se le due ricerche non si sono incontrate guarda se entrambe hanno trovato un teleport
     if(nearestS_toStart != -1 && nearestS_toTarget != -1)
         cout << nearestS_toStart + nearestS_toTarget + 1;
     else
