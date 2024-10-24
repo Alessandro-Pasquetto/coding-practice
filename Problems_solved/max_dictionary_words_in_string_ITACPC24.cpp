@@ -38,13 +38,13 @@ int main()
     for(char c: stringa){
 
         // Salva parole correntemente nell engine
-        vector<world_block> worlds_in_engine = words_engine[c];
+        vector<world_block> words_in_engine = words_engine[c];
 
         // Svuota engine
         words_engine.clear();
 
         // Ricarica parole nell'engine togliendo il primo carattere
-        for(world_block word_block: worlds_in_engine)
+        for(world_block word_block: words_in_engine)
             words_engine[word_block.word[1]].push_back(world_block(word_block.this_counter_past_chars_left, word_block.word.substr(1)));
 
         // Carica parole nell'engine togliendo il primo carattere
