@@ -5,11 +5,11 @@
 using namespace std;
 
 struct world_block{
-    int this_counter_past_chars_left;
+    int this_counter_chars_left_behind;
     string word;
 
-    world_block(int this_counter_past_chars_left, string word){
-        this->this_counter_past_chars_left = this_counter_past_chars_left;
+    world_block(int this_counter_chars_left_behind, string word){
+        this->this_counter_chars_left_behind = this_counter_chars_left_behind;
         this->word = word;
     }
 };
@@ -33,7 +33,7 @@ int main()
         dizionario[word[0]].push_back(word);
     }
 
-    int counter_past_chars_left = 0;
+    int counter_chars_left_behind = 0;
     // Start
     for(char c: stringa){
 
@@ -45,23 +45,23 @@ int main()
 
         // Ricarica parole nell'engine togliendo il primo carattere
         for(world_block word_block: words_in_engine)
-            words_engine[word_block.word[1]].push_back(world_block(word_block.this_counter_past_chars_left, word_block.word.substr(1)));
+            words_engine[word_block.word[1]].push_back(world_block(word_block.this_counter_chars_left_behind, word_block.word.substr(1)));
 
         // Carica parole nell'engine togliendo il primo carattere
         for(string word: dizionario[c])
-            words_engine[word[1]].push_back(world_block(counter_past_chars_left, word.substr(1)));
+            words_engine[word[1]].push_back(world_block(counter_chars_left_behind, word.substr(1)));
 
         // Dopo aver caricato conto il carattere come lasciato indietro
-        counter_past_chars_left++;
+        counter_chars_left_behind++;
     
         // Completed words
         for(world_block word_completed: words_engine['\0']){
-            if(counter_past_chars_left > word_completed.this_counter_past_chars_left)
-                counter_past_chars_left = word_completed.this_counter_past_chars_left;
+            if(counter_chars_left_behind > word_completed.this_counter_chars_left_behind)
+                counter_chars_left_behind = word_completed.this_counter_chars_left_behind;
         }
     }
 
-    cout<<counter_past_chars_left;
+    cout<<counter_chars_left_behind;
 
     return 0;
 }
