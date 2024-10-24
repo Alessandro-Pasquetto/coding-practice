@@ -1,7 +1,6 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -17,7 +16,7 @@ struct world_block{
 
 int main()
 {
-
+    
     unordered_map <char, vector<string>> dizionario;
     unordered_map <char, vector<world_block>> words_engine;
 
