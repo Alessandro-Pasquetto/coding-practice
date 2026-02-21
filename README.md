@@ -1,6 +1,3 @@
-# cpp-library
-My cpp algorithm library
-
 Ricordo comandi git:
 
 | Comando                                      | Commento                                               |
@@ -26,7 +23,7 @@ Ricordo comandi git:
 |                                               |                                                        |
 | `git commit -m "commento"`                  | Salvataggio in locale                                 |
 | `git commit -a -m "commento"`               | Add all + salvataggio in locale                       |
-| `git commit --amend --no-edit"`               | Modifica l'ultimo commit senza cambiare il messaggio |
+| `git commit --amend --no-edit`               | Modifica l'ultimo commit senza cambiare il messaggio |
 | `git commit --amend`                        | Modifica ultimo commit                                |
 | `git log`                                  | Lista commit con hash                                 |
 | `git diff "hash_commit1" "hash_commit2"`    | Confronta due commit                                  |
